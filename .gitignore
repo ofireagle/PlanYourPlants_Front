@@ -1,0 +1,5 @@
+/node_modules
+/.env
+src/videos/video1.mp4
+src/videos/video5.mp4
+src/videos/video4.mp4

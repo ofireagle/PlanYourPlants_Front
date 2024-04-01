@@ -82,7 +82,6 @@ const renderApiResult = () => {
   }
 };
 
-
 const addPlantApi = async(req) =>{
   const url = API_URL + '/users/addPlant';
   try{

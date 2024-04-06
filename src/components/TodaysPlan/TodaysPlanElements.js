@@ -60,7 +60,7 @@ export const Form = styled.form`
     position: relative;
     top: 100px;
     margin: 0 auto;
-    padding: 80px 32px;
+    padding: 40px 32px;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(255,255,255,0.9);
 
@@ -81,6 +81,7 @@ export const FormLabel = styled.label`
     margin-bottom: 8px;
     font-size: 14px;
     color: rgb(0,0,0);
+    text-align: center;
 `
 
 export const FormInput = styled.input`

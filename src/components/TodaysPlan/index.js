@@ -35,7 +35,6 @@ const TodaysPlan = () => {
     let validate = isAuthenticated() ? null: navigate('/signin')
     const handleFetchData = async() =>{
         let userData = await getUserByToken()
-        //console.log(userData);
         setCurrentUser(userData);
         if(userData != null){
           await getWeatherNow(userData._id)
@@ -54,10 +53,7 @@ const TodaysPlan = () => {
     try {
       const axiosInstance = createAxiosInstance();
       const resp = await axiosInstance.get(path);
-      //console.log("get user response");
-      //console.log(resp);
       if (resp.data.status === 'success') {
-        // setCurrentUser(resp.data.details);
         return resp.data.details
       }
     } catch (error) {
@@ -82,6 +78,7 @@ const TodaysPlan = () => {
   const getUserPlan= async(userID) =>{
     let url = API_URL + '/plants/getPlan/' + userID
     try {
+      console.log(url)
       const userPlan = await axios.get(url);
       console.log("pan response -> ", userPlan);
      if(userPlan.status == 200){
@@ -94,22 +91,6 @@ const TodaysPlan = () => {
     }
 }
 
-    /// Problem with get plan api in server
-   /* const dataFetch = async () => {
-      const dataPlan = await (
-        await fetch(
-          "http://localhost:8000/api/plants/getPlan/" + currentUser._id
-        )).json();
-        console.log("Response from get plan -->");
-      console.log(dataPlan.details)
-      if (isMounted) {
-        setStatePlants(dataPlan.details);
-        setcolumns(Object.keys(dataPlan.details[0]))
-        setrecords(dataPlan.details)
-      }
-    };
-    dataFetch();*/
-
   return (
     <Container>
         <HeroBg>
@@ -119,7 +100,7 @@ const TodaysPlan = () => {
             <FormContent>
                 <Form action="#">
                     <FormH1> Current Weather </FormH1>
-                    <FormLabel type='weather'> { state && state.current.temp_c + 'c' } </FormLabel>
+                    <FormLabel type='weather'> { state && state.current.temp_c + 'c, ' +  state.location.name + ', ' + state.location.country} </FormLabel>
                 </Form>
             </FormContent>
         </FormWrap>
@@ -129,18 +110,21 @@ const TodaysPlan = () => {
                     <FormH1> Table of Plants </FormH1>
                     <FormTable className="table">
                         <FormThead>
-                            <FormTr>{columns.map((c, i) => (
-                              <FormTh key={i}>{c}</FormTh>
-                              ))}</FormTr>
+                            <FormTr>
+                                <FormTh key="0">Name</FormTh>
+                                <FormTh key="1">Humidity</FormTh>
+                                <FormTh key="2">Location</FormTh>
+                                <FormTh key="3">Method Of Irrigation</FormTh>
+                                <FormTh key="4">Optimal Weather</FormTh>
+                              </FormTr>
                         </FormThead>
                         <FormTbody>
                             {records.map((c, i) => (
                               <FormTr key={i}>
                                 <FormTd>{c.name}</FormTd>
-                                <FormTd>{c.frequency_of_irrigation}</FormTd>
                                 <FormTd>{c.humidity}</FormTd>
-                                <FormTd>{c.method_of_irrigation}</FormTd>
                                 <FormTd>{c.location}</FormTd>
+                                <FormTd>{c.method_of_irrigation}</FormTd>
                                 <FormTd>{c.optimal_weather}</FormTd>
                                 </FormTr>
                               ))}

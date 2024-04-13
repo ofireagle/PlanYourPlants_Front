@@ -20,12 +20,8 @@ const isAuthenticated = () => {
   return document.cookie.includes('jwt');
 };
 
-/*const PrivateRoute = ({ element }) => {
-  return isAuthenticated() ? (
-    <Route element={element} />
-  ) : (
-    <Navigate to="/signIn" replace />
-  );
-};*/
+const isAdmin = (user) =>{
+  return user.Role === 0;
+}
 
 export { createAxiosInstance, API_URL, isAuthenticated };

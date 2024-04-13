@@ -24,6 +24,7 @@ const Sidebar = ({ isOpen, toggle }) => {
                 <SidebarLink to="/identifyPlant" onClick={toggle}> Identify Plant </SidebarLink>
                 <SidebarLink to="/updatePlan" onClick={toggle}> Update Plan </SidebarLink>
                 <SidebarLink to="/contact" onClick={toggle}> Contact </SidebarLink>
+                <SidebarLink to="/adminDashboard" onClick={toggle}> Admin </SidebarLink>
             </SidebarMenu>
             {/*<SideBtnWrap>
                 <SidebarRoute to="/signin"> Sign In </SidebarRoute>

@@ -12,6 +12,7 @@ import IdentifyPlantPage from './pages/identifyPlant';
 import TodaysPlanPage from './pages/todaysPlan';
 import UpdatePlanPage from './pages/updatePlan';
 import ContactPage from './pages/contact';
+import Admin from './pages/admin';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/todaysPlan" element={<TodaysPlanPage/>}/>
         <Route path="/updatePlan" element={<UpdatePlanPage/>}/>
         <Route path="/contact" element={<ContactPage/>}/>
+        <Route path='/adminDashboard' element={<Admin/>}/>
       </Routes>
     </Router>
   );

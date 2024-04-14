@@ -1,32 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
-export const Container = styled.div`
-    min-height: 692px;
-    position: relative;
-    justify-content: center;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    padding-bottom: 150px;
-    z-index: 0;
-    overflow: hidden;
-    background: radial-gradient(circle, rgba(243,149,64,1) 20%, rgba(61,13,1,1) 90%, rgba(0,0,0,1) 100%);
-    display: flex; 
-    flex-direction: column;
-`
-
-export const FormWrap = styled.div`
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 50px;
-    @media screen and (max-width: 400px) {
-        height: 80%;
-    }
-`
 
 export const Icon = styled(Link)`
     margin-left: 32px;
@@ -42,97 +16,21 @@ export const Icon = styled(Link)`
     }
 `
 
-export const FormContent = styled.div`
-    height: 100%;
+export const Container = styled.div`
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    @media screen and (max-width: 480px) {
-        padding: 10px;
-    }
-`
-
-export const Form = styled.form`
-    background: rgba(230,230,230,0.6);
-    height: auto;
-    width: 100%;
-    display: grid;
-    position: relative;
-    top: 100px;
-    margin: 0 auto;
-    padding: 40px 32px;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(255,255,255,0.9);
-
-    @media screen and (max-width: 400px) {
-        padding: 32px 32px;
-    }
-`
-
-export const FormH1 = styled.h1`
-    margin-bottom: 40px;
-    color: rgb(0,0,0);
-    font-size: 20px;
-    font-weight: 400;
-    text-align: center;
-`
-
-export const FormLabel = styled.label`
-    margin-bottom: 8px;
-    font-size: 14px;
-    color: rgb(0,0,0);
-    text-align: center;
-`
-
-export const FormInput = styled.input`
-    padding: 16px 16px;
-    margin-bottom: 32px;
-    border: none;
-    border-radius: 4px;
-`
-
-export const FormButton = styled.button`
-    background: #F39540;
-    padding: 16px 0;
-    border: none;
-    border-radius: 4px;
-    color: rgb(0,0,0);
-    font-size: 20px;
-    cursor: pointer;
-`
-
-export const Text = styled.span`
-    text-align: center;
-    margin-top: 24px;
-    color: #fff;
-    font-size: 14px;
-`
-
-export const HeroBg = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0; 
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-`
-
-export const VideoBg = styled.video`
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    background: #232a34;
-    filter: brightness(75%);
-`
+    padding: 50px;
+    background: radial-gradient(circle, rgba(243,149,64,1) 20%, rgba(61,13,1,1) 90%, rgba(0,0,0,1) 100%);
+`;
 
 export const AdminTabs = styled.nav`
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
-`
+    margin-bottom: 50px;
+`;
 
 export const TabButton = styled.button`
     padding: 10px 20px;
@@ -144,12 +42,35 @@ export const TabButton = styled.button`
     cursor: pointer;
     font-size: 18px;
     font-weight: ${({ isActive }) => isActive ? 'bold' : 'normal'};
-`
+`;
+
+export const ActiveTabIndicator = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: ${({ activeTab }) => {
+        switch (activeTab) {
+            case 'Users':
+                return 'calc(33.33% - 50px)';
+            case 'Plants':
+                return 'calc(50% - 50px)';
+            case 'Families':
+                return 'calc(66.66% - 50px)';
+            default:
+                return 'calc(33.33% - 50px)';
+        }
+    }};
+    width: 100px;
+    height: 3px;
+    background-color: #F39540;
+    transition: left 0.3s ease-in-out;
+`;
 
 export const FormTable = styled.table`
-    width: 100%;
-    margin-bottom: 20px;
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
     border-collapse: collapse;
+    border: 2px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
 `;
@@ -162,6 +83,8 @@ export const FormThead = styled.thead`
 export const FormTbody = styled.tbody``;
 
 export const FormTr = styled.tr`
+    cursor: pointer;
+
     &:hover {
         background-color: #f5f5f5;
     }
@@ -171,32 +94,61 @@ export const FormTh = styled.th`
     padding: 12px 15px;
     font-size: 18px;
     text-align: center;
-    
+    border-bottom: 2px solid #ddd;
 `;
 
 export const FormTd = styled.td`
     padding: 12px 15px;
     font-size: 16px;
     text-align: center;
+    border-bottom: 1px solid #ddd;
 `;
 
-export const ActiveTabIndicator = styled.div`
+export const CardContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999; /* Ensure it's above other content */
+`;
+
+export const Card = styled.div`
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+`;
+
+export const CardTitle = styled.h2`
+    margin-bottom: 20px;
+    font-size: 24px;
+`;
+
+export const CardButton = styled.button`
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: ${({ color }) => color || '#F39540'};
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+`;
+
+export const CardCloseButton = styled.button`
     position: absolute;
-    bottom: 0;
-    left: ${({ activeTab }) => {
-        switch (activeTab) {
-            case 'Users':
-                return '33.33%';
-            case 'Plants':
-                return '50%';
-            case 'Families':
-                return '66.66%';
-            default:
-                return '33.33%';
-        }
-    }};
-    width: 33.33%;
-    height: 3px;
-    background-color: #F39540;
-    transition: left 0.3s ease-in-out;
-`
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #000;
+`;
+

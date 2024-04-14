@@ -11,19 +11,19 @@ const Users = ({ data }) => {
         <FormTable>
             <FormThead>
                 <FormTr>
-                    <FormTh>Name</FormTh>
-                    <FormTh>Email</FormTh>
-                    <FormTh>Phone</FormTh>
-                    <FormTh>City</FormTh>
+                    <FormTh>Plant Name</FormTh>
+                    <FormTh>Family Name</FormTh>
+                    <FormTh>Humidity</FormTh>
+                    <FormTh>optimal_weather</FormTh>
                 </FormTr>
             </FormThead>
             <FormTbody>
-                {data.map((user, index) => (
+                {data.map((p, index) => (
                     <FormTr key={index}>
-                        <FormTd>{user.name}</FormTd>
-                        <FormTd>{user.email}</FormTd>
-                        <FormTd>{user.phone}</FormTd>
-                        <FormTd>{user.city}</FormTd>
+                        <FormTd>{p.name}</FormTd>
+                        <FormTd>{p.famObj.family_name}</FormTd>
+                        <FormTd>{p.famObj.humidity}</FormTd>
+                        <FormTd>{p.famObj.optimal_weather + "C"}</FormTd>
                     </FormTr>
                 ))}
             </FormTbody>

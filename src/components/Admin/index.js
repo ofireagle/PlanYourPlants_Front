@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Users from './users';
 import Plants from './plants';
 import Families from './families';
 import { Container, AdminTabs, TabButton, ActiveTabIndicator, FormTable, FormThead, FormTbody, FormTr, FormTh, FormTd } from './AdminPanelElements';
 import axios from 'axios';
-import { API_URL } from '../../services/api';
+import { API_URL, isAuthenticated, isAdmin, createAxiosInstance } from '../../services/api';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('Users');
-    const [userData, setUserData] = useState([]);
+    const [usersData, setUserData] = useState([]);
     const [plantsData, setPlantsData] = useState([]);
     const [familiesData, setFamiliesData] = useState([]);
+    const [mergedData, setMergedData] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        let validate = isAuthenticated() ? null: navigate('/signin')
+        
+        const validateAdmin = async() =>{
+            let response = await isAdmin() ? false : navigate('/discoverPlants')
+        }
+
         const fetchUserData = async () => {
             try {
                 const resp = await axios.get(API_URL + '/users');
@@ -39,11 +48,25 @@ const AdminDashboard = () => {
                 console.error('Error fetching family data:', error);
             }
         };
-
+        validateAdmin()
         fetchUserData();
         fetchPlantsData();
         fetchFamiliesData();
     }, []);
+
+    useEffect(() => {
+        if (plantsData.length > 0 && familiesData.length > 0) {
+            const merged = mergeData();
+            setMergedData(merged);
+        }
+    }, [plantsData, familiesData]);
+
+    const mergeData = () => {
+        return plantsData.map(plant => {
+            const famObj = familiesData.find(family => family._id === plant.family);
+            return { ...plant, famObj };
+        });
+    };
 
     return (
         <Container>
@@ -58,32 +81,14 @@ const AdminDashboard = () => {
             </div>
             <div style={{ marginTop: '20px', overflowX: 'auto' }}>
                 {activeTab === 'Users' && (
-                    <FormTable>
-                        <FormThead>
-                            <FormTr>
-                                <FormTh>Name</FormTh>
-                                <FormTh>Email</FormTh>
-                                <FormTh>Phone</FormTh>
-                                <FormTh>City</FormTh>
-                            </FormTr>
-                        </FormThead>
-                        <FormTbody>
-                            {userData.map((user, index) => (
-                                <FormTr key={index}>
-                                    <FormTd>{user.name}</FormTd>
-                                    <FormTd>{user.email}</FormTd>
-                                    <FormTd>{user.phone}</FormTd>
-                                    <FormTd>{user.city}</FormTd>
-                                </FormTr>
-                            ))}
-                        </FormTbody>
-                    </FormTable>
+                    <Users data={usersData}/>
                 )}
                 {activeTab === 'Plants' && (
-                    <Plants data={plantsData} />
+                    
+                    <Plants data={mergedData} />
                 )}
                 {activeTab === 'Families' && (
-                    <Families data={familiesData} />
+                    <Families data={mergedData} />
                 )}
             </div>
         </Container>

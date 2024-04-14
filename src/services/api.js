@@ -20,8 +20,23 @@ const isAuthenticated = () => {
   return document.cookie.includes('jwt');
 };
 
-const isAdmin = (user) =>{
-  return user.Role === 0;
+const isAdmin = async() =>{
+  let user = await getUserByToken()
+  return user.role === 0;
 }
 
-export { createAxiosInstance, API_URL, isAuthenticated };
+const getUserByToken = async () => {
+  const path = '/users/getUserByToken';
+      try {
+          const axiosInstance = createAxiosInstance();
+          const resp = await axiosInstance.get(path);
+          if (resp.data.status === 'success') {
+            return resp.data.details
+          }
+      } catch (error) {
+          console.log(error);
+          return null
+      }                
+  };
+
+export { createAxiosInstance, API_URL, isAuthenticated, isAdmin };

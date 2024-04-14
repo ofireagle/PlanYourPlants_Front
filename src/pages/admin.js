@@ -4,11 +4,12 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
-
+import { API_URL, isAdmin } from '../services/api'
 const AdminPage = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggle = () => {
+
         let abortController = new AbortController();
         setIsOpen(!isOpen);
         return () => {

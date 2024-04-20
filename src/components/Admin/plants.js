@@ -6,7 +6,7 @@ import { FormTable,
     FormThead,
     FormTbody } from './AdminPanelElements';
 
-const Users = ({ data }) => {
+const Plants = ({ data }) => {
     return (
         <FormTable>
             <FormThead>
@@ -31,4 +31,4 @@ const Users = ({ data }) => {
     );
 };
 
-export default Users;
+export default Plants;

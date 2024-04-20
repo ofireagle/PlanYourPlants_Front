@@ -1,50 +1,43 @@
-import React,  {useState, useEffect} from 'react';
-import { FormTable, 
+import React, { useState, useEffect } from 'react';
+import {
+    FormTable,
     FormTd,
     FormTh,
     FormTr,
     FormThead,
-    FormTbody } from './AdminPanelElements';
+    FormTbody
+} from './AdminPanelElements';
+import { extractFamilyData, API_URL } from '../../services/api';
+import axios from 'axios';
 
-const Users = ({ data }) => {
-    const [customArr, setCustomArr] = useState([])
+const Families = ({ data }) => {
+    const [familyData, setFamilyData] = useState([]);
 
-    useEffect(()=>{
-        const handlePageLoad = async() =>{
+    useEffect(() => {
+        const fetchData = async () => {
+            const extractedData = await extractFamilyData(data);
+            setFamilyData(extractedData);
+        };
+        fetchData();
+    }, [data]);
 
-        }
-    }, [])
-
-    const mergeArraysByCondition = (array1, array2, condition) => {
-        return array1.map(item1 => {
-            const matchingItem = array2.find(item2 => condition(item1, item2));
-            return { ...item1, ...matchingItem };
-        });
-    };
-    const array1 = [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }];
-    const array2 = [{ id: 1, value: 'Value 1' }, { id: 2, value: 'Value 2' }];
-    
-    const mergedArray = mergeArraysByCondition(array1, array2, (item1, item2) => item1.id === item2.id);
-    
-    console.log(mergedArray);
-        
     return (
         <FormTable>
             <FormThead>
                 <FormTr>
                     <FormTh>Family Name</FormTh>
                     <FormTh>Location</FormTh>
-                    <FormTh>Number of plants</FormTh>
-                    <FormTh>City</FormTh>
+                    <FormTh>Method of Irrigation</FormTh>
+                    <FormTh>Number of Plants</FormTh>
                 </FormTr>
             </FormThead>
             <FormTbody>
-                {data.map((p, index) => (
+                {familyData.map((family, index) => (
                     <FormTr key={index}>
-                        <FormTd>{p.famObj.family_name}</FormTd>
-                        <FormTd>{p.famObj.location}</FormTd>
-                        <FormTd>{}</FormTd>
-                        <FormTd>{}</FormTd>
+                        <FormTd>{family.familyName}</FormTd>
+                        <FormTd>{family.location}</FormTd>
+                        <FormTd>{family.methodOfIrrigation}</FormTd>
+                        <FormTd>{family.plantsCounter}</FormTd>
                     </FormTr>
                 ))}
             </FormTbody>
@@ -52,4 +45,4 @@ const Users = ({ data }) => {
     );
 };
 
-export default Users;
+export default Families;

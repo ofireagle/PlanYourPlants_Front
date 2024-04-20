@@ -15,7 +15,6 @@ export const Icon = styled(Link)`
         margin-top: 8px;
     }
 `
-
 export const Container = styled.div`
     min-height: 100vh;
     display: flex;
@@ -152,3 +151,18 @@ export const CardCloseButton = styled.button`
     color: #000;
 `;
 
+export const InputLabel = styled.label`
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+`;
+
+export const InputField = styled.input`
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+`;

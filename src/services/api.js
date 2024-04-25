@@ -92,4 +92,4 @@ const getUserByToken = async () => {
 };
 
 
-export { createAxiosInstance, API_URL, isAuthenticated, isAdmin, extractFamilyData };
+export { createAxiosInstance, API_URL, isAuthenticated, isAdmin, extractFamilyData, getUserByToken };

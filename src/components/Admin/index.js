@@ -70,7 +70,6 @@ const AdminDashboard = () => {
 
     return (
         <Container>
-            <h2>Admin Dashboard</h2>
             <div style={{ marginTop: '100px' }}>
                 <AdminTabs>
                     <TabButton onClick={() => setActiveTab('Users')} isActive={activeTab === 'Users'}>Users</TabButton>

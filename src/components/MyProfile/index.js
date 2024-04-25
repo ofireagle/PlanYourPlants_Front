@@ -15,7 +15,7 @@ import {
     VideoBg
  } from './MyProfileElements'
  import Video from '../../videos/video6.mp4'
- import { API_URL, createAxiosInstance, isAuthenticated} from '../../services/api';
+ import { createAxiosInstance, isAuthenticated} from '../../services/api';
 
 const MyProfile = () => {
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ const MyProfile = () => {
   const [inputEmail, setInputEmail] = useState('');
   const [inputPhone, setInputPhone] = useState('');
   const [inputCity, setInputCity] = useState('');
+  const [inputCountry, setInputCountry] = useState('');
   const [currentUser, setCurrentUser] = useState({});
 
 
@@ -51,6 +52,7 @@ const MyProfile = () => {
         setInputEmail(resp.data.details.email);
         setInputPhone(resp.data.details.phone);
         setInputCity(resp.data.details.city);
+        setInputCountry(resp.data.details.country);
         setState(resp.data.details)
       }
     } catch (error) {
@@ -92,6 +94,7 @@ const MyProfile = () => {
       email: inputEmail,
       phone: inputPhone,
       city: inputCity,
+      country: inputCountry,
     };
 
     updateApi(userData);
@@ -145,6 +148,14 @@ const MyProfile = () => {
             <FormInput
               id='city'
               defaultValue={inputCity}
+              autoComplete='on'
+              onChange={(e) => setInputCity(e.target.value)}
+              required
+            />
+            <FormLabel htmlFor='city'> Country </FormLabel>
+            <FormInput
+              id='country'
+              defaultValue={inputCountry}
               autoComplete='on'
               onChange={(e) => setInputCity(e.target.value)}
               required

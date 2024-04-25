@@ -78,9 +78,7 @@ const TodaysPlan = () => {
   const getUserPlan= async(userID) =>{
     let url = API_URL + '/plants/getPlan/' + userID
     try {
-      console.log(url)
       const userPlan = await axios.get(url);
-      console.log("pan response -> ", userPlan);
      if(userPlan.status == 200){
       setStatePlants(userPlan.data.details);
       setcolumns(Object.keys(userPlan.data.details[0]))
@@ -112,7 +110,7 @@ const TodaysPlan = () => {
                         <FormThead>
                             <FormTr>
                                 <FormTh key="0">Name</FormTh>
-                                <FormTh key="1">Humidity</FormTh>
+                                <FormTh key="1">Irrigation (per 1L soil)</FormTh>
                                 <FormTh key="2">Location</FormTh>
                                 <FormTh key="3">Method Of Irrigation</FormTh>
                                 <FormTh key="4">Optimal Weather</FormTh>

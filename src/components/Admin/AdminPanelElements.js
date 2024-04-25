@@ -22,7 +22,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     padding: 50px;
-    background: radial-gradient(circle, rgba(243,149,64,1) 20%, rgba(61,13,1,1) 90%, rgba(0,0,0,1) 100%);
+    background: radial-gradient(circle, rgba(243,149,64,1) 20%, rgba(61,13,1,1) 100%);
 `;
 
 export const AdminTabs = styled.nav`

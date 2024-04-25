@@ -166,3 +166,20 @@ export const InputField = styled.input`
     box-sizing: border-box;
     font-size: 16px;
 `;
+
+export const SelectField = styled.select`
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+`;
+
+export const Option = styled.option`
+    background-color: #fff;
+    color: #333;
+`;

@@ -124,3 +124,31 @@ export const VideoBg = styled.video`
     background: #232a34;
     filter: brightness(75%);
 `;
+
+export const ListContainer = styled.div`
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+`;
+
+export const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+export const ListItem = styled.li`
+  cursor: pointer;
+  padding: 5px;
+`;
+
+export const UpdateButton = styled.button`
+  background-color: #F39540;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+`;

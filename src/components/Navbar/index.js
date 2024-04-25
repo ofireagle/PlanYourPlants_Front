@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FaBars } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
-import { animateScroll as scroll } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll';
 import {
     Nav,
     NavbarContainer,
@@ -13,45 +13,44 @@ import {
     NavBtn,
     NavBtnLink
 } from './NavbarElements';
+import { isAdmin } from '../../services/api';
 
 const Navbar = ({ toggle }) => {
 
-    const [scrollNav, setScrollNav] = useState(false)
+    const [scrollNav, setScrollNav] = useState(false);
+    const [isAdminUser, setIsAdminUser] = useState(false);
 
     const changeNav = () => {
-        let abortController = new AbortController();
         if (window.scrollY >= 80) {
-            setScrollNav(true)
+            setScrollNav(true);
         } else {
-            setScrollNav(false)
+            setScrollNav(false);
         }
-
-        //console.log(window)
-
-        return () => {
-            abortController.abort();
-        }
-    }
+    };
 
     useEffect(() => {
-        window.addEventListener('scroll', changeNav)
-    }, [])
+        window.addEventListener('scroll', changeNav);
+        checkAdmin();
+        return () => {
+            window.removeEventListener('scroll', changeNav);
+        };
+    }, []);
 
-    // Function from react-scroll
     const toggleHome = () => {
         scroll.scrollToTop();
-    }
+    };
 
+    const checkAdmin = async () => {
+        try {
+            const result = await isAdmin();
+            //console.log("ADMIN? ", result);
+            setIsAdminUser(result); 
+        } catch (error) {
+            console.error('Error checking admin status:', error);
+        }
+    };
 
     return (
-        // Empty tags are simplified <React.Fragment>
-
-        // NavLogo is a react router link, which means that
-        // it needs to have its own version of href, which is 'to'
-
-        // IconContext.Provider is useful to change color of all icons
-        // within the context
-        
         <>
             <IconContext.Provider value={{ color: '#fff' }}>
                 <Nav scrollNav={scrollNav}>
@@ -68,29 +67,28 @@ const Navbar = ({ toggle }) => {
                                 <NavLinks to="/todaysPlan"> Today's Plan </NavLinks>
                             </NavItem>
                             <NavItem>
-                            <NavLinks to="/discoverPlants"> Discover Plants </NavLinks>
+                                <NavLinks to="/discoverPlants"> Discover Plants </NavLinks>
                             </NavItem>
                             <NavItem>
-                            <NavLinks to="/identifyPlant"> Identify Plant </NavLinks>
+                                <NavLinks to="/identifyPlant"> Identify Plant </NavLinks>
                             </NavItem>
                             <NavItem>
-                            <NavLinks to="/updatePlan"> Update Plan </NavLinks>
+                                <NavLinks to="/updatePlan"> Update Plan </NavLinks>
                             </NavItem>
                             <NavItem>
-                            <NavLinks to="/contact"> Contact </NavLinks>
+                                <NavLinks to="/contact"> Contact </NavLinks>
                             </NavItem>
-                            <NavItem>
-                            <NavLinks to="/adminDashboard"> Admin </NavLinks>
-                            </NavItem>
+                            {isAdminUser && (
+                                <NavItem>
+                                    <NavLinks to="/adminDashboard">Admin</NavLinks>
+                                </NavItem>
+                             )}
                         </NavMenu>
-                        {/*<NavBtn>
-                            <NavBtnLink to="/signIn"> Sign In</NavBtnLink>
-                        </NavBtn>*/}
                     </NavbarContainer>
                 </Nav>
             </IconContext.Provider>
         </>
-    )
-}
+    );
+};
 
 export default Navbar;

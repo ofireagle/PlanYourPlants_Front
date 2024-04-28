@@ -12,7 +12,7 @@ import {
   VideoBg,
   FormImage
 } from './DiscoverPlantsElements';
-import { isAuthenticated, API_URL } from '../../services/api';
+import { isAuthenticated, API_URL, createAxiosInstance } from '../../services/api';
 import axios from 'axios';
 import Video from '../../videos/video4.mp4';
 
@@ -42,7 +42,7 @@ const DiscoverPlants = () => {
     let url = API_URL + '/plants/getRandom'
     try {
       let resp = await axios.get(url);
-      console.log(resp);
+      //console.log(resp);
       if (resp.data.status === 'success') {
         return resp.data.details;
       }
@@ -81,6 +81,22 @@ const DiscoverPlants = () => {
                 alt="Plant Image"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
+              <br></br>
+              <FormButton type='button' onClick={async() =>{
+                  const url = API_URL + '/users/addPlant'
+                  const axiosInstance = createAxiosInstance();
+                  const dataObj = {"plantID":[statePlant._id]};
+                  try {
+                    let resp = await axiosInstance.patch(url, dataObj);
+                    let data = resp.data;
+                    //console.log(data);
+                    if(data.status === 'success'){
+                      alert (`${statePlant.name} Added successfully to your list`)
+                    }
+                  } catch (error) {
+                    console.log(`Error added plant to user ${error}`);
+                  }
+              }}>Add To My List</FormButton>
             </Form>
           </FormContent>
         </FormWrap>

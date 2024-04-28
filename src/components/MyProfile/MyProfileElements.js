@@ -44,6 +44,14 @@ export const Icon = styled(Link)`
     }
 `
 
+export const FormSelect = styled.select`
+    padding: 16px 16px;
+    max-width: 336px;
+    max-height: 48.7px;
+    border: none;
+    border-radius: 4px;
+`
+
 export const FormContent = styled.div`
     height: 100%;
     display: flex;

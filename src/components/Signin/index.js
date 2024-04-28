@@ -43,10 +43,10 @@ const SignIn = () => {
           const response = await axios.post(url, data);
           const user = response.data.details;
           const token = response.data.token;
-          const expiresDate = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
+          //const expiresDate = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
           const cookiesOptions = {
             path:'/',
-            expires:expiresDate,
+            expires:0,
             secure:true,
             sameSite:'strict'
           }

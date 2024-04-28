@@ -48,9 +48,8 @@ const SignUp = () => {
   }, []);
 
   const onFormSubmit = async (data) => {
-    const newUser = await signUp(data);
+   const newUser = await signUp(data);
     if (newUser) {
-      //alert('Successfully registered to the system!')
       navigate('/myProfile');
     } else {
       alert('Wrong Data!');
@@ -58,27 +57,25 @@ const SignUp = () => {
   }
 
   const signUp = async (data) => {
-    const url = API_URL + '/users/SignUp';
-    try {
-      const response = await axios.post(url, data);
-      const newUser = response.data.details;
-      const token = response.data.token;
-      console.log(newUser);
-      console.log("token -> ", token);
-      const expiresDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-      const cookiesOptions = {
-        path:'/',
-        expires:expiresDate,
-        secure:true,
-        sameSite:'strict'
+      const url = API_URL + '/users/SignUp';
+      try {
+        const response = await axios.post(url, data);
+        const newUser = response.data.details;
+        const token = response.data.token;
+        //const expiresDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+        const cookiesOptions = {
+          path:'/',
+          expires:0,
+          secure:true,
+          sameSite:'strict'
+        }
+        //console.log(cookiesOptions);
+        cookies.set('jwt', token, cookiesOptions)
+        return true;
+      } catch (error) {
+          console.log(error);
+          return false;
       }
-      console.log(cookiesOptions);
-      cookies.set('jwt', token, cookiesOptions)
-      return true;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
   }
 
   const emailRef = register("email", {
@@ -112,7 +109,8 @@ const SignUp = () => {
 
     return (
         <Container>
-            <FormWrap onSubmit={handleSubmit(onFormSubmit)}>
+          {/* onSubmit={handleSubmit(onFormSubmit)} */}
+            <FormWrap >
                 <Icon to="/"> Plan your Plants </Icon>
                 <FormContent>
                     <Form action="#" onSubmit={handleSubmit(onFormSubmit)}>
@@ -179,8 +177,8 @@ const SignUp = () => {
                         <FormSelect type='country' {...register("country", {
                             required: true,
                             minLength: 2
-                          })} onChange={(e) => fetchCities(e.target.value)} defaultValue={"placeholder"}>
-                            <option value={"placeholder"} hidden disabled>
+                          })} onChange={(e) => fetchCities(e.target.value)} defaultValue={null}>
+                            <option value={null} hidden disabled>
                             Select your country
                           </option>
                             {countries.map((country) => (
@@ -197,8 +195,8 @@ const SignUp = () => {
                         <FormSelect type='city' {...register("city", {
                             required: true,
                             minLength: 2
-                        })} defaultValue={"placeholder"}>
-                          <option value={"placeholder"} hidden disabled>
+                        })} defaultValue={null}>
+                          <option value={null} hidden disabled>
                             Select your city
                             </option>
                           {Cities.map((city) => (

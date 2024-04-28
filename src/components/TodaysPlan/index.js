@@ -66,7 +66,7 @@ const TodaysPlan = () => {
       let url = API_URL + '/plants/getWeather/' + userID
       try {
         const dataWeather = await axios.get(url);
-        console.log("weather response -> ", dataWeather);
+        //console.log("weather response -> ", dataWeather);
        if(dataWeather.status == 200){
          setState(dataWeather.data.details);
        }

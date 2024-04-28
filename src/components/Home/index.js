@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-// pexels.com for free stock videos
-import Video from '../../videos/video.mp4'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Video from '../../videos/video.mp4';
 import {
     HeroContainer,
     HeroBg,
@@ -11,17 +11,23 @@ import {
     HeroBtnWrapper,
     ArrowForward,
     ArrowRight
-} from './HomeElement'
-
-import { Button } from '../ButtonElement'
+} from './HomeElement';
+import { Button } from '../ButtonElement';
+import { isAuthenticated } from '../../services/api';
 
 const HeroSection = () => {
-
-    const [ hover, setHover ] = useState(false)
+    const navigate = useNavigate();
+    const [hover, setHover] = useState(false);
 
     const onHover = () => {
-        setHover(!hover)
-    }
+        setHover(!hover);
+    };
+
+    useEffect(() => {
+        if (isAuthenticated()) {
+            navigate('/todaysPlan');
+        }
+    }, [navigate]);
 
     return (
         <HeroContainer id="home">
@@ -37,8 +43,8 @@ const HeroSection = () => {
                 <HeroBtnWrapper>
                     <Button 
                         to="/signIn" 
-                        onMouseEnter={ onHover } 
-                        onMouseLeave={ onHover }
+                        onMouseEnter={onHover} 
+                        onMouseLeave={onHover}
                         primary="true"
                         dark="true"
                         smooth={true}
@@ -53,7 +59,7 @@ const HeroSection = () => {
                 </HeroBtnWrapper>
             </HeroContent>
         </HeroContainer>
-    )
-}
+    );
+};
 
-export default HeroSection
+export default HeroSection;

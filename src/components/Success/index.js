@@ -7,7 +7,7 @@ import {
   FormContent,
   Form,
   FormH1
-} from './SuccessElements';
+} from '../elements';
 
 const SuccessPage = () => {
   const location = useLocation();

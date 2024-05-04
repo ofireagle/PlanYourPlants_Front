@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
 import ScrollToTop from '../components/ScrollToTop'
+
 const AdminPage = () => {
     const [isOpen, setIsOpen] = useState(false)
 
@@ -15,9 +16,9 @@ const AdminPage = () => {
             abortController.abort();
         }
     }
+
   return (
     <>
-      
       <ScrollToTop/>
       <Sidebar isOpen={isOpen} toggle={toggle}/>
       <Navbar toggle={toggle}/>

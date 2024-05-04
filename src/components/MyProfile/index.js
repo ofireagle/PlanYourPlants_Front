@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Container, FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, HeroBg, VideoBg, FormSelect } from './MyProfileElements';
+import { ContainerProfile } from './MyProfileElements' 
+import { FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, HeroBg, VideoBg, FormSelect } from '../elements';
 import Video from '../../videos/video6.mp4';
 import { createAxiosInstance, isAuthenticated } from '../../services/api';
 
@@ -95,7 +96,7 @@ const MyProfile = () => {
     };
 
     return (
-        <Container>
+        <ContainerProfile>
             <HeroBg>
                 <VideoBg autoPlay loop muted src={Video} type='video/mp4' />
             </HeroBg>
@@ -181,7 +182,7 @@ const MyProfile = () => {
                     </Form>
                 </FormContent>
             </FormWrap>
-        </Container>
+        </ContainerProfile>
     );
 };
 

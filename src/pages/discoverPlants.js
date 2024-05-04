@@ -15,9 +15,9 @@ const DiscoverPlantsPage = () => {
             abortController.abort();
         }
     }
+    
   return (
     <>
-      
       <ScrollToTop/>
       <Sidebar isOpen={isOpen} toggle={toggle}/>
       <Navbar toggle={toggle}/>

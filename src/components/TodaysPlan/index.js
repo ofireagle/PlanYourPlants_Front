@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import {
     Container,
     FormWrap,
-    Icon,
     FormContent,
     Form,
     FormH1,
     FormLabel,
-    FormInput,
-    FormButton,
     FormTable,
     FormThead,
     FormTbody,
@@ -66,8 +63,7 @@ const TodaysPlan = () => {
       let url = API_URL + '/plants/getWeather/' + userID
       try {
         const dataWeather = await axios.get(url);
-        //console.log("weather response -> ", dataWeather);
-       if(dataWeather.status == 200){
+       if(dataWeather.status === 200){
          setState(dataWeather.data.details);
        }
       } catch (error) {
@@ -79,9 +75,10 @@ const TodaysPlan = () => {
     let url = API_URL + '/plants/getPlan/' + userID
     try {
       const userPlan = await axios.get(url);
-     if(userPlan.status == 200){
+     if(userPlan.status === 200) {
       setStatePlants(userPlan.data.details);
-      setcolumns(Object.keys(userPlan.data.details[0]))
+      if (userPlan.data.details.length !== 0)
+        setcolumns(Object.keys(userPlan.data.details[0]))
       setrecords(userPlan.data.details)
      }
     } catch (error) {

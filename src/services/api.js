@@ -1,6 +1,5 @@
 import axios from "axios";
 import Cookies from 'universal-cookie';
-import {Navigate, Route} from 'react-router-dom'
 const API_URL = "http://localhost:8000/api";
 
 const cookies = new Cookies();
@@ -38,7 +37,6 @@ const getUserByToken = async () => {
           return null
       }                
   };
-
 
   const extractFamilyData = async(plantsArray) => {
     const familyMap = {};
@@ -92,6 +90,5 @@ const getUserByToken = async () => {
 
     return familyDataArray;
 };
-
 
 export { createAxiosInstance, API_URL, isAuthenticated, isAdmin, extractFamilyData, getUserByToken };

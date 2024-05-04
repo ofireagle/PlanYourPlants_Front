@@ -15,7 +15,7 @@ import {
     FormLabel,
     FormButton,
     TextDanger
- } from './ResetPasswordElements'
+ } from '../elements'
 
 const ResetPassword = () => {
     const { register, getValues, handleSubmit, formState: { errors } } = useForm();

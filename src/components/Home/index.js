@@ -11,8 +11,8 @@ import {
     HeroBtnWrapper,
     ArrowForward,
     ArrowRight
-} from './HomeElement';
-import { Button } from '../ButtonElement';
+} from '../elements';
+import { Button } from './ButtonElement';
 import { isAuthenticated } from '../../services/api';
 
 const HeroSection = () => {

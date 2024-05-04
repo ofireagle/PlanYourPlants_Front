@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../services/api';
-import { Input, InputAdornment, IconButton } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
-import Cookies from 'universal-cookie';
 import {
     Container,
     FormWrap,
@@ -16,21 +13,18 @@ import {
     FormLabel,
     FormInput,
     FormButton,
-    Text,
     TextDanger
- } from './ForgotPasswordElements'
+ } from '../elements'
 
 const ForgotPassword = () => {
     const{register, handleSubmit, formState :{errors}} = useForm();
     const navigate = useNavigate();
-
 
     const onFormSubmit = (data) => {
         console.log(data);
         forgotPassword(data);
       };
       
-
     const forgotPassword = async (data) => {
         const url = API_URL + '/users/forgotPassword';
         try {

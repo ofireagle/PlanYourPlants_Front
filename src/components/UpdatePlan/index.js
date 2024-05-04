@@ -7,16 +7,13 @@ import {
   FormContent,
   Form,
   FormH1,
-  FormLabel,
-  FormInput,
-  FormButton,
   HeroBg,
   VideoBg,
   ListContainer,
   List,
   ListItem,
   UpdateButton,
-} from './UpdatePlanElements';
+} from '../elements';
 import Video from '../../videos/video2.mp4';
 import { createAxiosInstance, isAuthenticated, API_URL } from '../../services/api';
 

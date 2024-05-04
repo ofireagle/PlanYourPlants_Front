@@ -18,7 +18,7 @@ import {
     Text,
     TextDanger,
     FormSelect
- } from './SignupElements'
+ } from '../elements'
  import Cookies from 'universal-cookie';
 
 const SignUp = () => {
@@ -34,8 +34,6 @@ const SignUp = () => {
     let country = await axios.get(
       "https://countriesnow.space/api/v0.1/countries"
     );
-    console.log(country);
-
     setCountries(country.data.data);
   };
   const fetchCities = (country) => {
@@ -62,14 +60,12 @@ const SignUp = () => {
         const response = await axios.post(url, data);
         const newUser = response.data.details;
         const token = response.data.token;
-        //const expiresDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
         const cookiesOptions = {
           path:'/',
           expires:0,
           secure:true,
           sameSite:'strict'
         }
-        //console.log(cookiesOptions);
         cookies.set('jwt', token, cookiesOptions)
         return true;
       } catch (error) {
@@ -109,7 +105,6 @@ const SignUp = () => {
 
     return (
         <Container>
-          {/* onSubmit={handleSubmit(onFormSubmit)} */}
             <FormWrap >
                 <Icon to="/"> Plan your Plants </Icon>
                 <FormContent>

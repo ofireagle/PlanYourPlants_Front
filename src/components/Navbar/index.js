@@ -11,10 +11,8 @@ import {
     MobileIcon,
     NavMenu,
     NavItem,
-    NavLinks,
-    NavBtn,
-    NavBtnLink
-} from './NavbarElements';
+    NavLinks
+} from '../elements';
 import { isAdmin } from '../../services/api';
 
 const Navbar = ({ toggle }) => {
@@ -47,7 +45,6 @@ const Navbar = ({ toggle }) => {
     const checkAdmin = async () => {
         try {
             const result = await isAdmin();
-            //console.log("ADMIN? ", result);
             setIsAdminUser(result); 
         } catch (error) {
             console.error('Error checking admin status:', error);

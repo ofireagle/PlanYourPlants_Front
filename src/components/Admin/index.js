@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Users from './users';
 import Plants from './plants';
 import Families from './families';
-import { Container, AdminTabs, TabButton, ActiveTabIndicator, FormTable, FormThead, FormTbody, FormTr, FormTh, FormTd } from './AdminPanelElements';
+import { Container, AdminTabs, TabButton, ActiveTabIndicator } from '../elements';
 import axios from 'axios';
-import { API_URL, isAuthenticated, isAdmin, createAxiosInstance } from '../../services/api';
+import { API_URL, isAuthenticated, isAdmin } from '../../services/api';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('Users');

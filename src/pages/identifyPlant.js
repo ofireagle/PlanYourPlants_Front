@@ -15,6 +15,7 @@ const IdentifyPlantPage = () => {
             abortController.abort();
         }
     }
+    
   return (
     <>
       <ScrollToTop/>

@@ -15,6 +15,7 @@ const UpdatePlanPage = () => {
             abortController.abort();
         }
     }
+    
   return (
     <>
       <ScrollToTop/>

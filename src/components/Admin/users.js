@@ -1,5 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { FormTable, FormTd, FormTh, FormTr, FormThead, FormTbody, CardContainer, Card, CardTitle, CardCloseButton, InputLabel, InputField, CardButton, SelectField, Option } from './AdminPanelElements';
+import { 
+    FormTable, 
+    FormTd, 
+    FormTh, 
+    FormTr, 
+    FormThead, 
+    FormTbody, 
+    CardContainer, 
+    Card, 
+    CardTitle, 
+    CardCloseButton, 
+    InputLabel, 
+    InputField, 
+    CardButton, 
+    SelectField, 
+    Option
+} from '../elements';
 import { createAxiosInstance, API_URL } from '../../services/api';
 import axios from 'axios';
 
@@ -60,12 +76,9 @@ const Users = ({ data }) => {
         const url = API_URL + '/users/updateUser';
         let userID = editedUser._id;
         editedUser["userID"] = userID
-        //console.log("Edit user object");
-        //console.log(editedUser);
         try {
             const axiosInstance = createAxiosInstance();
             const resp = await axiosInstance.patch(url, editedUser);
-            //console.log('Response -> ', resp);
             if (resp.status === 200 && resp.data.status === "success") {
                 alert('User updated successfully!');
                 setSelectedUser(null);

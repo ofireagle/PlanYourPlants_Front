@@ -6,9 +6,8 @@ import {
     FormTr,
     FormThead,
     FormTbody
-} from './AdminPanelElements';
-import { extractFamilyData, API_URL } from '../../services/api';
-import axios from 'axios';
+} from '../elements';
+import { extractFamilyData } from '../../services/api';
 
 const Families = ({ data }) => {
     const [familyData, setFamilyData] = useState([]);

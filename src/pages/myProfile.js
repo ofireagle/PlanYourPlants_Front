@@ -15,6 +15,7 @@ const MyProfilePage = () => {
             abortController.abort();
         }
     }
+    
     return (
         <>
             <ScrollToTop/>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Container, FormWrap, FormContent, Form, FormH1, FormButton, HeroBg, VideoBg } from './IdentifyPlantElements';
+import React, { useState, useEffect } from 'react';
+import { Container, FormWrap, FormContent, Form, FormH1, FormButton, HeroBg, VideoBg } from '../elements';
 import Video from '../../videos/video3.mp4';
 import { isAuthenticated, API_URL, createAxiosInstance } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -27,20 +27,17 @@ const IdentifyPlant = () => {
     }
   };
 
-
   const handleUploadClick = async (event) => {
     event.preventDefault();
     
     if (selectedImage) {
-      console.log('Selected Image:', selectedImage);
       try {
         const axiosInstance = createAxiosInstance();
         const formData = new FormData();
         formData.append('image', selectedImage);
         const path = '/plants/identifyPlant';
         const resp = await axiosInstance.post(path, formData);
-        console.log('Response -> ', resp);
-        if(resp.status == 200){
+        if(resp.status === 200){
           setApiResponse(resp.data);
         }
       } catch (error) {
@@ -92,8 +89,7 @@ const addPlantApi = async(req) =>{
     console.log(req);
     console.log(body);
     const resp = await axiosInstance.patch(url, body);
-    console.log('Response -> ', resp);
-    if(resp.status == 200 && resp.data.status == "success"){
+    if(resp.status === 200 && resp.data.status === "success"){
       alert('Plant added successfully into your plants list !')
     }
   }catch(error){

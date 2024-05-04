@@ -4,7 +4,7 @@ import { FormTable,
     FormTh,
     FormTr,
     FormThead,
-    FormTbody } from './AdminPanelElements';
+    FormTbody } from '../elements';
 
 const Plants = ({ data }) => {
     return (

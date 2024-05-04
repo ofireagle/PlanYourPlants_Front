@@ -18,7 +18,7 @@ import {
     FormButton,
     Text,
     TextDanger
- } from './SigninElements'
+ } from '../elements'
 
 const SignIn = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -35,7 +35,6 @@ const SignIn = () => {
         }
       };
     
-    
       const login = async (data) => {
         const url = API_URL + '/users/login';
         console.log(data);
@@ -43,7 +42,6 @@ const SignIn = () => {
           const response = await axios.post(url, data);
           const user = response.data.details;
           const token = response.data.token;
-          //const expiresDate = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000);
           const cookiesOptions = {
             path:'/',
             expires:0,

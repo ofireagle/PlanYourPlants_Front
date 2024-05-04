@@ -1,23 +1,16 @@
 import React from 'react'
-import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaYoutube, FaLinkedin } from 'react-icons/fa'
 import {
     FooterContainer,
     FooterWrap,
-    FooterLinksContainer,
-    FooterLinkItems,
-    FooterLinksWrapper,
-    FooterLinkTitle,
-    FooterLink,
     SocialMedia,
     SocialMediaWrap,
     SocialLogo,
     SocialIcons,
     WebsiteRights,
     SocialIconLink
-} from './FooterElements'
+} from '../elements'
 import { animateScroll as scroll } from 'react-scroll'
-
-// To link outside of the website, use normal a tags
 
 const Footer = () => {
 
@@ -29,36 +22,6 @@ const Footer = () => {
     return (
         <FooterContainer>
             <FooterWrap>
-                {/*<FooterLinksContainer>
-                    <FooterLinksWrapper>
-                        <FooterLinkItems>
-                            <FooterLinkTitle> About us </FooterLinkTitle>
-                        </FooterLinkItems>
-                        <FooterLinkItems>
-                            <FooterLinkTitle> Contact us </FooterLinkTitle>
-                            <FooterLink to="/"> Contact </FooterLink>
-                            <FooterLink to="/"> Support </FooterLink>
-                            <FooterLink to="/"> Destinations </FooterLink>
-                            <FooterLink to="/"> Sponsorships </FooterLink>
-                        </FooterLinkItems>
-                    </FooterLinksWrapper>
-                    <FooterLinksWrapper>
-                        <FooterLinkItems>
-                            <FooterLinkTitle> Videos </FooterLinkTitle>
-                            <FooterLink to="/"> Submit Video </FooterLink>
-                            <FooterLink to="/"> Ambassadors </FooterLink>
-                            <FooterLink to="/"> Agency </FooterLink>
-                            <FooterLink to="/"> Influencers </FooterLink>
-                        </FooterLinkItems>
-                        <FooterLinkItems>
-                            <FooterLinkTitle> Social Media </FooterLinkTitle>
-                            <FooterLink to="/"> Instagram </FooterLink>
-                            <FooterLink to="/"> Facebook </FooterLink>
-                            <FooterLink to="/"> Youtube </FooterLink>
-                            <FooterLink to="/"> Twitter </FooterLink>
-                        </FooterLinkItems>
-                    </FooterLinksWrapper>
-                </FooterLinksContainer>*/}
                 <SocialMedia>
                     <SocialMediaWrap>
                         <SocialLogo to='/' onClick={toggleHome}>
@@ -68,9 +31,6 @@ const Footer = () => {
                         <SocialIcons>
                             <SocialIconLink href="https://www.facebook.com/orthermelin" target="_blank" aria-label="Facebook">
                                 <FaFacebook />
-                            </SocialIconLink>
-                            <SocialIconLink href="https://www.instagram.com/hermelin.fun/" target="_blank" aria-label="Instagram">
-                                <FaInstagram />
                             </SocialIconLink>
                             <SocialIconLink href="https://www.youtube.com/user/ORTIsrael" target="_blank" aria-label="Youtube">
                                 <FaYoutube />

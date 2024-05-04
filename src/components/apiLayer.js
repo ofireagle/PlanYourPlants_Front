@@ -42,9 +42,6 @@ const handleResponse = (key, options, response, jsonResponse) => {
     errors,
     headers: response.headers,
   };
-
-  // use any dispatchers/method to communicate this data to the store/view
-  // dispatch(key, resp)
 };
 
 const API = {
@@ -75,7 +72,7 @@ const API = {
         handleResponse(key, option, res, res.data);
       })
       .catch((err) => {
-        // error handling logic
+        console.log(err)
       });
   },
 
@@ -120,4 +117,3 @@ const API = {
   
   config,
 };
-

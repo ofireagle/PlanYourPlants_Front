@@ -11,7 +11,7 @@ import {
     FormButton,
     HeroBg,
     VideoBg
- } from './ContactElements'
+ } from '../elements'
  import emailjs from 'emailjs-com';
  import Video from '../../videos/video1.mp4'
 

@@ -11,7 +11,7 @@ import {
   HeroBg,
   VideoBg,
   FormImage
-} from './DiscoverPlantsElements';
+} from '../elements';
 import { isAuthenticated, API_URL, createAxiosInstance } from '../../services/api';
 import axios from 'axios';
 import Video from '../../videos/video4.mp4';
@@ -42,7 +42,6 @@ const DiscoverPlants = () => {
     let url = API_URL + '/plants/getRandom'
     try {
       let resp = await axios.get(url);
-      //console.log(resp);
       if (resp.data.status === 'success') {
         return resp.data.details;
       }
@@ -89,7 +88,6 @@ const DiscoverPlants = () => {
                   try {
                     let resp = await axiosInstance.patch(url, dataObj);
                     let data = resp.data;
-                    //console.log(data);
                     if(data.status === 'success'){
                       alert (`${statePlant.name} Added successfully to your list`)
                     }

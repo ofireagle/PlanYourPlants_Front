@@ -70,6 +70,7 @@ const Users = ({ data }) => {
                 alert('User updated successfully!');
                 setSelectedUser(null);
                 setEditedUser(null);
+                window.location.reload();
             }
         } catch (error) {
             console.log('Error on update user ', error);
@@ -84,6 +85,7 @@ const Users = ({ data }) => {
             if (data.status === "success") {
                 alert(data.data);
                 setSelectedUser(null);
+                window.location.reload();
             }
         } catch (error) {
             console.log(`Error deleting user ${error}`);

@@ -55,18 +55,25 @@ const AdminDashboard = () => {
     }, []);
 
     useEffect(() => {
-        if (plantsData.length > 0 && familiesData.length > 0) {
+        if (plantsData.length > 0 && familiesData.length > 0 && usersData.length > 0) {
             const merged = mergeData();
             setMergedData(merged);
         }
-    }, [plantsData, familiesData]);
+    }, [plantsData, familiesData, usersData]);
 
     const mergeData = () => {
         return plantsData.map(plant => {
             const famObj = familiesData.find(family => family._id === plant.family);
-            return { ...plant, famObj };
+            const userObj = usersData.find(user => user._id === plant.creator);
+            const numberOfUsers = calculateNumberOfUsers(plant, usersData);
+            return { ...plant, famObj, userObj, numberOfUsers };
         });
     };
+
+    const calculateNumberOfUsers = (plant, usersData) => {
+        return usersData.filter(user => user.plants.includes(plant._id)).length;
+    };
+    
 
     return (
         <Container>

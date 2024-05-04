@@ -53,7 +53,7 @@ const getUserByToken = async () => {
 
     plantsArray.forEach((plant) => {
         const { family, famObj } = plant;
-        const { _id: famId, family_name } = famObj;
+        const { _id: famId, family_name, optimal_weather } = famObj;
 
         // Get location name
         const locationName = locations.find(loc => loc._id === famObj.location)?.location || 'Unknown';
@@ -67,6 +67,7 @@ const getUserByToken = async () => {
                 familyName: family_name,
                 location: locationName,
                 methodOfIrrigation: methodName,
+                optimal_weather: optimal_weather,
                 plantsCounter: 1
             };
         } else {
@@ -79,6 +80,7 @@ const getUserByToken = async () => {
                 familyName: family_name,
                 location: locationName,
                 methodOfIrrigation: methodName,
+                optimal_weather: optimal_weather,
                 plantsCounter: 1
             };
         } else if (famId !== family) {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { animateScroll as scroll } from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 import {
     Nav,
     NavbarContainer,
@@ -19,6 +21,8 @@ const Navbar = ({ toggle }) => {
 
     const [scrollNav, setScrollNav] = useState(false);
     const [isAdminUser, setIsAdminUser] = useState(false);
+    const navigate = useNavigate();
+    const cookies = new Cookies();
 
     const changeNav = () => {
         if (window.scrollY >= 80) {
@@ -48,6 +52,11 @@ const Navbar = ({ toggle }) => {
         } catch (error) {
             console.error('Error checking admin status:', error);
         }
+    };
+
+    const handleLogout = () => {
+        cookies.remove('jwt');
+        navigate('/');
     };
 
     return (
@@ -83,6 +92,9 @@ const Navbar = ({ toggle }) => {
                                     <NavLinks to="/adminDashboard">Admin</NavLinks>
                                 </NavItem>
                              )}
+                             <NavItem>
+                             <NavLinks to="/" onClick={handleLogout}> Logout </NavLinks>
+                            </NavItem>
                         </NavMenu>
                     </NavbarContainer>
                 </Nav>

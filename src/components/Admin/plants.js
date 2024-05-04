@@ -13,8 +13,8 @@ const Plants = ({ data }) => {
                 <FormTr>
                     <FormTh>Plant Name</FormTh>
                     <FormTh>Family Name</FormTh>
-                    <FormTh>Humidity</FormTh>
-                    <FormTh>optimal_weather</FormTh>
+                    <FormTh>Number of used users</FormTh>
+                    <FormTh>Created By</FormTh>
                 </FormTr>
             </FormThead>
             <FormTbody>
@@ -22,8 +22,8 @@ const Plants = ({ data }) => {
                     <FormTr key={index}>
                         <FormTd>{p.name}</FormTd>
                         <FormTd>{p.famObj.family_name}</FormTd>
-                        <FormTd>{p.famObj.humidity}</FormTd>
-                        <FormTd>{p.famObj.optimal_weather + "C"}</FormTd>
+                        <FormTd>{p.numberOfUsers}</FormTd>
+                        <FormTd>{p.userObj ?p.userObj.name : 'System'}</FormTd>
                     </FormTr>
                 ))}
             </FormTbody>

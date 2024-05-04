@@ -28,6 +28,7 @@ const Families = ({ data }) => {
                     <FormTh>Family Name</FormTh>
                     <FormTh>Location</FormTh>
                     <FormTh>Method of Irrigation</FormTh>
+                    <FormTh>Optimal weather</FormTh>
                     <FormTh>Number of Plants</FormTh>
                 </FormTr>
             </FormThead>
@@ -37,6 +38,7 @@ const Families = ({ data }) => {
                         <FormTd>{family.familyName}</FormTd>
                         <FormTd>{family.location}</FormTd>
                         <FormTd>{family.methodOfIrrigation}</FormTd>
+                        <FormTd>{family.optimal_weather.includes('c')? family.optimal_weather: family.optimal_weather + 'c'}</FormTd>
                         <FormTd>{family.plantsCounter}</FormTd>
                     </FormTr>
                 ))}

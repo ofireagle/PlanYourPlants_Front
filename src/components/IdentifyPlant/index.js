@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, FormWrap, FormContent, Form, FormH1, FormButton, HeroBg, VideoBg } from '../elements';
+import { Container, FormWrap, FormContent, Form } from './IdentifyPlantElements';
+import { FormH1, FormButton, HeroBg, VideoBg } from '../elements';
 import Video from '../../videos/video3.mp4';
 import { isAuthenticated, API_URL, createAxiosInstance } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -115,7 +116,7 @@ const addPlantApi = async(req) =>{
       <FormWrap>
         <FormContent>
           <Form action="#">
-            <FormH1>Plants details/Add new plant</FormH1>
+            <FormH1>Plants details</FormH1>
             {renderApiResult()}
           </Form>
         </FormContent>

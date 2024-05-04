@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Container,
+  Form,
   FormWrap,
   FormContent,
-  Form,
   FormLabel,
   FormH1,
   FormButton,
@@ -12,6 +11,7 @@ import {
   VideoBg,
   FormImage
 } from '../elements';
+import { Container } from './DiscoverPlantsElements'
 import { isAuthenticated, API_URL, createAxiosInstance } from '../../services/api';
 import axios from 'axios';
 import Video from '../../videos/video4.mp4';
@@ -27,6 +27,10 @@ const DiscoverPlants = () => {
     if (fetchData) {
       dataFetch();
       setFetchData(false);
+    }
+    let isMounted = true;
+    return () => {
+      isMounted = false;
     }
   }, [fetchData]);
 
@@ -50,7 +54,7 @@ const DiscoverPlants = () => {
       return null;
     }
   };
-
+  
   return (
     <Container>
       <HeroBg>

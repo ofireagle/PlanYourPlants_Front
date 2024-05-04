@@ -472,6 +472,7 @@ export const FormSelect = styled.select`
     max-height: 48.7px;
     border: none;
     border-radius: 4px;
+    margin-bottom: 32px;
 `
 export const Nav = styled.nav`
     background: ${({scrollNav}) => (scrollNav ? '#000' : 'transparent')};

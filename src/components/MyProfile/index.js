@@ -68,10 +68,8 @@ const MyProfile = () => {
 
     const handleCountryChange = (e) => {
         const country = e.target.value;
-        if(country) {
           setSelectedCountry(country);
           fetchCities(country);
-        }
     };
 
     const handleFetchData = async () => {

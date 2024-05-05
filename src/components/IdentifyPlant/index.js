@@ -18,7 +18,7 @@ const IdentifyPlant = () => {
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-
+    console.log(file);
     if (file && file.type.startsWith('image/')) {
       setSelectedImage(file);
       setErrorMessage('');
@@ -30,14 +30,15 @@ const IdentifyPlant = () => {
 
   const handleUploadClick = async (event) => {
     event.preventDefault();
-    
     if (selectedImage) {
       try {
         const axiosInstance = createAxiosInstance();
         const formData = new FormData();
         formData.append('image', selectedImage);
+        console.log(formData);
         const path = '/plants/identifyPlant';
         const resp = await axiosInstance.post(path, formData);
+        console.log(resp);
         if(resp.status === 200){
           setApiResponse(resp.data);
         }
@@ -46,6 +47,7 @@ const IdentifyPlant = () => {
         setErrorMessage('Something went wrong. Try again letter')
         setApiResponse(null);
       }
+      //setSelectedImage(null);
     } else {
       setErrorMessage('No image uploaded');
     }

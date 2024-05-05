@@ -587,4 +587,10 @@ export const UpdateButton = styled.button`
   font-size: 16px;
   margin-top: 10px;
 `;
-;
+
+export const TextDanger1 = styled.div`
+    margin-bottom: 32px;
+    font-weight: bold;
+    color: brown;
+    font-size: 12px;
+`;

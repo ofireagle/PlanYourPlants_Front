@@ -12,7 +12,7 @@ import {
     ArrowForward,
     ArrowRight
 } from '../elements';
-import { Button } from './ButtonElement';
+import { Button } from './HomeElements';
 import { isAuthenticated } from '../../services/api';
 
 const HeroSection = () => {

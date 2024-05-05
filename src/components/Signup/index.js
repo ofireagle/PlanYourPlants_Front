@@ -16,8 +16,8 @@ import {
     FormInput,
     FormButton,
     Text,
-    TextDanger,
-    FormSelect
+    FormSelect,
+    TextDanger1
  } from '../elements'
  import Cookies from 'universal-cookie';
 
@@ -115,24 +115,25 @@ const SignUp = () => {
                             required: true,
                             minLength: 3
                         })}/>
-                        {errors.name && <TextDanger> Name must be a minimum of 3 letters </TextDanger>}
+                        {errors.name && <TextDanger1> Name must be a minimum of 3 letters </TextDanger1>}
 
                         <FormLabel htmlFor='for'> Email </FormLabel>
                         <FormInput type='email' {...emailRef}/>
-                        {errors.email && <TextDanger> Enter a valid email </TextDanger>}
+                        {errors.email && <TextDanger1> Enter a valid email </TextDanger1>}
 
                         <FormLabel htmlFor='for'> Password </FormLabel>
                         <Input
                             type={showPassword ? "text" : "password"}
-                            style={{ padding: '16px 16px',
-                                marginBottom: '32px',
-                                border: 'none',
-                                borderRadius: '4px',
-                                background: 'aliceblue',
-                                height: '48.8px',
-                                fontFamily: 'Encode Sans Expanded, sans-serif',
-                                fontSize: '13.5px',
-                                marginBottom: '0px' }}
+                            style={{ 
+                              padding: '16px 16px',
+                              marginBottom: '32px',
+                              border: 'none',
+                              borderRadius: '4px',
+                              background: 'field',
+                              height: '48.8px',
+                              fontFamily: 'Encode Sans Expanded, sans-serif',
+                              fontSize: '13.5px'
+                              }}
                             {...register("password", { required: true, minLength: 8 })}
                             endAdornment={
                                 <InputAdornment position="end">
@@ -142,30 +143,31 @@ const SignUp = () => {
                                 </InputAdornment>
                             }
                         />
-                        {errors.password && <TextDanger> Enter at least 8 characters and one special character </TextDanger>}
+                        {errors.password && <TextDanger1> Enter at least 8 characters (including letters) and one special character </TextDanger1>}
 
                         <FormLabel htmlFor='for'> Confirm Password </FormLabel>
                         <Input
-                            type={showPassword ? "text" : "password"}
-                            style={{ padding: '16px 16px',
-                                marginBottom: '32px',
-                                border: 'none',
-                                borderRadius: '4px',
-                                background: 'aliceblue',
-                                height: '48.8px',
-                                fontFamily: 'Encode Sans Expanded, sans-serif',
-                                fontSize: '13.5px',
-                                marginBottom: '0px' }}
-                                {...confirmPasswordRef}
-                                endAdornment={
-                                  <InputAdornment position="end">
-                                    <IconButton onClick={handleConfirmPasswordVisibility}>
-                                      {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                  </InputAdornment>
-                                }
+                            type = {showPassword ? "text" : "password"}
+                            style = {{ 
+                              padding: '16px 16px',
+                              marginBottom: '32px',
+                              border: 'none',
+                              borderRadius: '4px',
+                              background: 'field',
+                              height: '48.8px',
+                              fontFamily: 'Encode Sans Expanded, sans-serif',
+                              fontSize: '13.5px'
+                              }}
+                            {...confirmPasswordRef}
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <IconButton onClick={handleConfirmPasswordVisibility}>
+                                  {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                              </InputAdornment>
+                            }
                         />
-                        {errors.passwordConfirm && <TextDanger> Passwords must match </TextDanger>}
+                        {errors.passwordConfirm && <TextDanger1> Passwords must match </TextDanger1>}
 
                         <FormLabel htmlFor='for'> Country </FormLabel>
                         {countries && (
@@ -183,7 +185,7 @@ const SignUp = () => {
                             ))}
                         </FormSelect>
                         )}
-                        {errors.country && <TextDanger> Enter a valid country </TextDanger>}
+                        {errors.country && <TextDanger1> Enter a valid country </TextDanger1>}
                         
                         <FormLabel htmlFor='for'> City </FormLabel>
                         {Cities && (
@@ -200,11 +202,11 @@ const SignUp = () => {
                             </option>
                           ))}
                         </FormSelect>)} 
-                        {errors.city && <TextDanger> Enter a valid city </TextDanger>}
+                        {errors.city && <TextDanger1> Enter a valid city </TextDanger1>}
 
                         <FormLabel htmlFor='for'> Phone  </FormLabel>
                         <FormInput type='phone' {...phoneRef}/>
-                        {errors.phone && <TextDanger> Enter a valid phone number </TextDanger>}
+                        {errors.phone && <TextDanger1> Enter a valid phone number </TextDanger1>}
 
                         <FormButton type='submit'> Register </FormButton>
                         

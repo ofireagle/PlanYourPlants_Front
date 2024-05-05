@@ -75,18 +75,19 @@ const SignIn = () => {
                         {errors.email && <TextDanger> Enter a valid email </TextDanger>}
                         <FormLabel htmlFor='for'> Password </FormLabel>
                         <Input
-                            type={showPassword ? "text" : "password"}
-                            style={{ padding: '16px 16px',
-                                marginBottom: '32px',
-                                border: 'none',
-                                borderRadius: '4px',
-                                background: 'aliceblue',
-                                height: '48.8px',
-                                fontFamily: 'Encode Sans Expanded, sans-serif',
-                                fontSize: '13.5px',
-                                marginBottom: '0px' }}
+                            type = {showPassword ? "text" : "password"}
+                            style = {{ 
+                              padding: '16px 16px',
+                              marginBottom: '32px',
+                              border: 'none',
+                              borderRadius: '4px',
+                              background: 'field',
+                              height: '48.8px',
+                              fontFamily: 'Encode Sans Expanded, sans-serif',
+                              fontSize: '13.5px'
+                              }}
                             {...register("password", { required: true, minLength: 8 })}
-                            endAdornment={
+                            endAdornment = {
                                 <InputAdornment position="end">
                                 <IconButton onClick={handlePasswordVisibility}>
                                     {showPassword ? <Visibility /> : <VisibilityOff />}

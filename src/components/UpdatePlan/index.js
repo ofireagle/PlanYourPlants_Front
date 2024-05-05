@@ -118,7 +118,7 @@ const UpdatePlan = () => {
                   const plant = allPlants.find(p => p._id === plantId);
                   return (
                     <ListItem key={index} onClick={() => handlePlantClick(plant)}>
-                      {plant ? plant.name : "Plant Not Found"}
+                      - {plant ? plant.name : "Plant Not Found"}
                     </ListItem>
                   );
                 })}
@@ -129,7 +129,7 @@ const UpdatePlan = () => {
               <List>
                 {filteredAllPlants && filteredAllPlants.map((plant, index) => (
                   <ListItem key={index} onClick={() => handlePlantClick(plant)}>
-                    {plant.name}
+                    + {plant.name}
                   </ListItem>
                 ))}
               </List>

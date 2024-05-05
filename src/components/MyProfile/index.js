@@ -5,6 +5,7 @@ import { ContainerProfile } from './MyProfileElements'
 import { FormWrap, FormContent, Form, FormH1, FormLabel, FormInput, FormButton, HeroBg, VideoBg, FormSelect } from '../elements';
 import Video from '../../videos/video6.mp4';
 import { createAxiosInstance, isAuthenticated } from '../../services/api';
+import { TextFormat } from '@material-ui/icons';
 
 const MyProfile = () => {
     const navigate = useNavigate();
@@ -102,7 +103,7 @@ const MyProfile = () => {
                 <FormContent>
                     <Form action="#">
                         <FormH1> My Gold </FormH1>
-                        <FormLabel type='gold'> {state && state.newPlants && state.newPlants.length > 0 ? state.newPlants.length * 10 + 50 : 0} </FormLabel>
+                        <FormLabel type='gold' style={{ textAlign: "center"}}> {state && state.newPlants && state.newPlants.length > 0 ? state.newPlants.length * 10 + 50 : 0} </FormLabel>
                     </Form>
                 </FormContent>
             </FormWrap>
@@ -172,7 +173,7 @@ const MyProfile = () => {
                 <FormContent>
                     <Form action="#">
                         <FormH1> Plants I Added </FormH1>
-                        <ul>
+                        <ul style={{ margin: "10px"}}>
                             {statePlants.map(val => (
                                 <li key={val._id}>{val.name}</li>
                             ))}

@@ -47,7 +47,6 @@ const IdentifyPlant = () => {
         setErrorMessage('Something went wrong. Try again letter')
         setApiResponse(null);
       }
-      //setSelectedImage(null);
     } else {
       setErrorMessage('No image uploaded');
     }
@@ -63,13 +62,12 @@ const renderApiResult = () => {
       <div style={{ textAlign: 'center' }}>
         <p>Name: {details.plant_name}</p>
         <p>Description: {details.plant_details.wiki_description.value}</p>
-        <img src={details.plant_details.image.value} style={{ maxWidth: '100%', height: 'auto' }} alt={details.plant_name} />
+        <img src={details.plant_details.image.value} style={{ maxWidth: '100%', height: 'auto', marginTop: '15px' }} alt={details.plant_name} />
         {dbResponse.msg !== 'Family does not exist, cannot create'  && (
           <FormButton type="button" style={{ margin: '10px' }} onClick={() => addPlantApi(dbResponse)}>Add to My List</FormButton>
-          
         )}
         <a href={details.plant_details.url} target="_blank" rel="noopener noreferrer">
-          <FormButton type="button" style={{ margin: '10px' }}>Wiki Link</FormButton>
+          <FormButton type="button" style = {{ margin: '10px', padding: '10px' }}>Wiki Link</FormButton>
         </a>
       </div>
     );
@@ -89,8 +87,6 @@ const addPlantApi = async(req) =>{
     let body = {
       "plantID":[req.plant._id]
     }
-    console.log(req);
-    console.log(body);
     const resp = await axiosInstance.patch(url, body);
     if(resp.status === 200 && resp.data.status === "success"){
       alert('Plant added successfully into your plants list !')
@@ -110,7 +106,7 @@ const addPlantApi = async(req) =>{
           <Form onSubmit={handleUploadClick}>
             <FormH1>Identify Plant</FormH1>
             <Input type='file' onChange={handleImageChange} />
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            {errorMessage && <p style={{ color: 'brown' }}>{errorMessage}</p>}
             <FormButton type="submit">Upload</FormButton>
           </Form>
         </FormContent>

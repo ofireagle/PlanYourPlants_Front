@@ -38,7 +38,7 @@ const getUserByToken = async () => {
       }                
   };
 
-  const extractFamilyData = async(plantsArray) => {
+  const extractFamilyData = async (plantsArray) => {
     const familyMap = {};
 
     // Fetch locations objects
@@ -86,9 +86,28 @@ const getUserByToken = async () => {
         }
     });
 
+    // Fetch all families
+    const allFamiliesResp = await axios.get(API_URL + '/families');
+    const allFamilies = allFamiliesResp.data.details;
+
+    // Merge families without plants into familyMap
+    allFamilies.forEach(family => {
+        if (!familyMap[family._id]) {
+            familyMap[family._id] = {
+                familyId: family._id,
+                familyName: family.family_name,
+                location: locations.find(loc => loc._id === family.location)?.location || 'Unknown',
+                methodOfIrrigation: methods.find(method => method._id === family.method_of_irrigation)?.method || 'Unknown',
+                optimal_weather: family.optimal_weather,
+                plantsCounter: 0
+            };
+        }
+    });
+
     const familyDataArray = Object.values(familyMap);
 
     return familyDataArray;
 };
+
 
 export { createAxiosInstance, API_URL, isAuthenticated, isAdmin, extractFamilyData, getUserByToken };

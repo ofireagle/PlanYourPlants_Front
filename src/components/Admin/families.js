@@ -137,8 +137,8 @@ const Families = ({ data }) => {
 
     return (
         <div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '25px' }}>
-            <FormButton style={{ fontSize: '1rem' }} type='button' onClick={() =>{setCreateFamilyTrigger(true)}}>Create New Family</FormButton>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '25px' }}>
+            <FormButton style={{ fontSize: '1rem', padding: '10px' }} type='button' onClick={() =>{setCreateFamilyTrigger(true)}}>Create New Family</FormButton>
         </div>
         <FormTable>
             <FormThead>
@@ -204,7 +204,7 @@ const Families = ({ data }) => {
                             })}/>
                             {errors.frequency_of_irrigation && <p style={{ fontSize: '0.8rem', color: 'red' }}> Frequency of irrigation Cannot be empty.</p>}
                             <InputLabel>humidity:</InputLabel>
-                            <InputField type='number' {...register("humidity", {
+                            <InputField type='text' {...register("humidity", {
                                 required: true,
                                 pattern: /^[+-]?\d*\.?\d+$/
                             })}/>
